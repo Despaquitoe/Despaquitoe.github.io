@@ -1,3 +1,13 @@
 a {
     text-decoration: none;
 }
+.big {
+    color: yellow
+}
+a:hover {
+    color:black;
+}
+.soul {
+    color:black;
+    font-family:"Comic Sans MS"
+}
