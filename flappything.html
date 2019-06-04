@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Processing Demo</title>
+<script type="text/javascript" src="js/processing.js"></script>
+</head>
+<body>
+
+
+<script type="text/processing">
+PImage background;
+PImage hedgehog;
+PImage zoom;
+int x;
+int cx;
+int cy;
+int cVy;
+int obsx;
+int obsy;
+int gameState;
+int[] wx = new int [2];
+int[] wy = new int[2];
+
+void setup(){
+  gameState=0;
+  size(600,420);
+  background= loadImage("./imgs/4theron2.png");
+  hedgehog= loadImage("./imgs/ohgog.png");
+  zoom = loadImage("./imgs/zoom.png");
+  cVy=2;
+  cx=50;
+}
+void draw (){
+  if (gameState == 0){
+  image(background,x,0);
+  image(background,x+background.width-5,0);
+  x--;
+  if(x<-background.width){
+    x=0;
+  }
+  image(hedgehog, cx,cy);
+  cy=cy+cVy;
+  cVy++;
+  x--;
+  accelerate();
+  image(zoom, obsx+500,obsy);
+  obsx--;
+/*int(obsx==cx&&obsy==cy);{
+  gameState=-1;
+}
+  
+
+    //BEGIN BUTTON
+/*fill(255); //COLOR OF TEXT
+textSize(40); //SIZE OF TEXT
+if(mouseX < 330 && mouseX > 100 && mouseY < 245 && mouseY > 200){
+fill(0,0,255);
+}
+rect(100,200, 230, 45, 10); //BACKGROUND OF BUTTON
+fill(0);
+if(mouseX < 330 && mouseX > 100 && mouseY < 245 && mouseY > 200){
+fill(255,0,0);
+}
+text("You Lose!!!", 110,239); //TEXT ON BUTTON
+//END BUTTON*/
+  }
+}
+void accelerate(){
+  if (mousePressed){
+    cVy=-11;
+  }
+}
+void checkHedge(){
+  if (cy>height||cy<-80){
+    gameState=1;
+  }
+}
+
+
+</script>
+
+<canvas id="sketch" style="border: 1px solid black;"></canvas>
+</body>
+</html>
